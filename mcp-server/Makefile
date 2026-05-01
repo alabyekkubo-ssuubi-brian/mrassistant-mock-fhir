@@ -1,5 +1,8 @@
 .PHONY: help install dev-up dev-down fhir-up fhir-down fhir-logs load-data run http-server server-http ngrok-up test test-tools test-mcp test-http test-curl inspect clean
 
+# Prefer Compose V2 (`docker compose`); fall back to standalone `docker-compose`
+DOCKER_COMPOSE := $(shell if docker compose version >/dev/null 2>&1; then echo "docker compose"; elif command -v docker-compose >/dev/null 2>&1; then echo docker-compose; else echo ""; fi)
+
 # Default target
 help:
 	@echo "Hospital FHIR MCP Server"
@@ -29,6 +32,9 @@ help:
 	@echo "  make load-data   Load mock FHIR data"
 	@echo "  make test        Run all tests"
 	@echo "  make clean       Remove virtual env and docker volumes"
+	@echo ""
+	@echo "Docker Compose (for fhir-up): install plugin or docker-compose binary."
+	@echo "  Debian/Ubuntu: sudo apt install docker-compose-plugin"
 
 # Install dependencies
 install:
@@ -52,14 +58,21 @@ dev-down: fhir-down
 
 # HAPI FHIR commands
 fhir-up:
-	docker-compose up -d
+	@if [ -z "$(DOCKER_COMPOSE)" ]; then \
+		echo >&2 "Docker Compose not found (need 'docker compose' or 'docker-compose')."; \
+		echo >&2 "  Debian/Ubuntu: sudo apt install docker-compose-plugin"; \
+		echo >&2 "  Or: https://docs.docker.com/compose/install/linux/"; \
+		exit 1; \
+	fi
+	@$(DOCKER_COMPOSE) up -d
 	@echo "HAPI FHIR starting at http://localhost:8080/fhir"
 
 fhir-down:
-	docker-compose down
+	@if [ -n "$(DOCKER_COMPOSE)" ]; then $(DOCKER_COMPOSE) down; fi
 
 fhir-logs:
-	docker-compose logs -f
+	@if [ -z "$(DOCKER_COMPOSE)" ]; then echo >&2 "Docker Compose not found"; exit 1; fi
+	@$(DOCKER_COMPOSE) logs -f
 
 # Wait for FHIR server to be ready (Python: works on Windows without curl/sleep in PATH)
 wait-for-fhir:
@@ -137,7 +150,7 @@ inspect:
 
 # Clean up
 clean:
-	docker-compose down -v
+	@if [ -n "$(DOCKER_COMPOSE)" ]; then $(DOCKER_COMPOSE) down -v; fi
 	rm -rf .venv
 	rm -rf __pycache__
 	find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
