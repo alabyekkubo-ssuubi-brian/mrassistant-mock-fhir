@@ -35,6 +35,11 @@ from mcp_server.tools.appointments import register_appointment_tools
 from mcp.server.fastmcp import FastMCP
 
 
+def _registered_tools(mcp: FastMCP):
+    """Registered @mcp.tool() entries (FastMCP stores these on _tool_manager)."""
+    return mcp._tool_manager.list_tools()
+
+
 # Create MCP instance and register tools
 mcp = FastMCP("Hospital FHIR MCP Server")
 register_patient_tools(mcp)
@@ -44,15 +49,13 @@ register_appointment_tools(mcp)
 
 
 # Tool registry for direct invocation
-TOOLS = {}
-for tool in mcp._tools.values():
-    TOOLS[tool.name] = tool.fn
+TOOLS = {tool.name: tool.fn for tool in _registered_tools(mcp)}
 
 
 def get_tool_schemas() -> list[dict]:
     """Get JSON schemas for all registered tools."""
     schemas = []
-    for tool in mcp._tools.values():
+    for tool in _registered_tools(mcp):
         schema = {
             "name": tool.name,
             "description": tool.fn.__doc__ or "",

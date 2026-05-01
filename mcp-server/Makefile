@@ -1,4 +1,4 @@
-.PHONY: help install dev-up dev-down fhir-up fhir-down fhir-logs load-data run http-server ngrok-up test test-tools test-mcp test-http test-curl inspect clean
+.PHONY: help install dev-up dev-down fhir-up fhir-down fhir-logs load-data run http-server server-http ngrok-up test test-tools test-mcp test-http test-curl inspect clean
 
 # Default target
 help:
@@ -10,7 +10,8 @@ help:
 	@echo "  make run         Run MCP server (stdio mode)"
 	@echo ""
 	@echo "HTTP Mode (for public deployment):"
-	@echo "  make http-server Run MCP server with HTTP transport"
+	@echo "  make http-server   Run MCP server with HTTP transport"
+	@echo "  make server-http   Same as http-server (matches repo root)"
 	@echo "  make ngrok-up    Start ngrok tunnel (auto-detects domain)"
 	@echo ""
 	@echo "Testing:"
@@ -36,7 +37,7 @@ install:
 # Start everything for development
 dev-up: fhir-up
 	@echo "Waiting for HAPI FHIR to start..."
-	@sleep 10
+	@uv run python -c "import time; time.sleep(10)"
 	@$(MAKE) wait-for-fhir
 	@$(MAKE) load-data
 	@echo ""
@@ -60,19 +61,10 @@ fhir-down:
 fhir-logs:
 	docker-compose logs -f
 
-# Wait for FHIR server to be ready
+# Wait for FHIR server to be ready (Python: works on Windows without curl/sleep in PATH)
 wait-for-fhir:
 	@echo "Checking FHIR server health..."
-	@for i in 1 2 3 4 5 6 7 8 9 10; do \
-		if curl -sf http://localhost:8080/fhir/metadata > /dev/null 2>&1; then \
-			echo "✓ FHIR server is ready"; \
-			exit 0; \
-		fi; \
-		echo "  Waiting... ($$i/10)"; \
-		sleep 3; \
-	done; \
-	echo "✗ FHIR server failed to start"; \
-	exit 1
+	@uv run python scripts/wait_for_fhir.py
 
 # Load mock data
 load-data:
@@ -85,6 +77,9 @@ run:
 # Run MCP server with HTTP transport (for public deployment)
 http-server:
 	uv run python -m mcp_server.http_server
+
+# Alias for root Makefile / docs that say `make server-http`
+server-http: http-server
 
 # Start ngrok tunnel (reads token from .env.ngrok, auto-detects domain)
 ngrok-up:
