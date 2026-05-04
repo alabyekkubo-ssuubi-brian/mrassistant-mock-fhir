@@ -13,7 +13,7 @@ def register_patient_tools(mcp: FastMCP):
         Search for a patient by name and date of birth.
         
         Args:
-            name: Patient's full name (first and last)
+            name: Patient's full name (given and family, or family and given, space separated)
             birth_date: Date of birth in YYYY-MM-DD format
         
         Returns:
@@ -22,39 +22,52 @@ def register_patient_tools(mcp: FastMCP):
         client = get_fhir_client()
         
         try:
-            # Search by name and birthdate
-            bundle = client.search("Patient", name=name, birthdate=birth_date)
-            
-            entries = bundle.get("entry", [])
-            if not entries:
+            # Parse name into parts
+            name_parts = name.strip().split()
+            if len(name_parts) != 2:
                 return {
                     "found": False,
-                    "message": "No patient found matching the provided name and date of birth"
+                    "message": "Please provide exactly two name parts (given and family)"
                 }
             
-            # Take the first match
-            patient = entries[0]["resource"]
-            patient_id = patient["id"]
+            # Try both orders: first given family, then family given
+            for order in [(name_parts[0], name_parts[1]), (name_parts[1], name_parts[0])]:
+                given, family = order
+                
+                # Search by family, given, and birthdate
+                bundle = client.search("Patient", family=family, given=given, birthdate=birth_date)
+                
+                entries = bundle.get("entry", [])
+                if entries:
+                    # Found
+                    patient = entries[0]["resource"]
+                    patient_id = patient["id"]
+                    
+                    # Extract name
+                    name_info = patient.get("name", [{}])[0]
+                    given_names = " ".join(name_info.get("given", []))
+                    family_name = name_info.get("family", "")
+                    full_name = f"{given_names} {family_name}".strip()
+                    
+                    # Extract phone
+                    phone = None
+                    for telecom in patient.get("telecom", []):
+                        if telecom.get("system") == "phone":
+                            phone = telecom.get("value")
+                            break
+                    
+                    return {
+                        "found": True,
+                        "patient_id": patient_id,
+                        "name": full_name,
+                        "birth_date": patient.get("birthDate"),
+                        "phone": phone
+                    }
             
-            # Extract name
-            name_parts = patient.get("name", [{}])[0]
-            given = " ".join(name_parts.get("given", []))
-            family = name_parts.get("family", "")
-            full_name = f"{given} {family}".strip()
-            
-            # Extract phone
-            phone = None
-            for telecom in patient.get("telecom", []):
-                if telecom.get("system") == "phone":
-                    phone = telecom.get("value")
-                    break
-            
+            # Not found in either order
             return {
-                "found": True,
-                "patient_id": patient_id,
-                "name": full_name,
-                "birth_date": patient.get("birthDate"),
-                "phone": phone
+                "found": False,
+                "message": "No patient found matching the provided name and date of birth"
             }
             
         except Exception as e:
