@@ -26,6 +26,11 @@ make server-http
 make client-demo
 ```
 
+## Cloud Run Deployment
+
+The MCP HTTP server can be deployed as a Google Cloud Run service from `mcp-server/`.
+See `mcp-server/docs/CLOUD_RUN_DEPLOYMENT.md` for the full build/push/deploy workflow.
+
 ## Testing Tools
 
 ```bash

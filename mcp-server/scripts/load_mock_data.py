@@ -2,16 +2,19 @@
 """Load mock FHIR data into HAPI FHIR server."""
 
 import json
+import os
 import sys
 from pathlib import Path
 
 import httpx
 
 
-FHIR_BASE_URL = "http://localhost:8080/fhir"
+def get_fhir_base_url() -> str:
+    """Get FHIR_BASE_URL from environment or use default."""
+    return os.getenv("FHIR_BASE_URL", "http://localhost:8080/fhir")
 
 
-def load_bundle(bundle_path: Path) -> None:
+def load_bundle(bundle_path: Path, fhir_base_url: str) -> None:
     """Load a FHIR Bundle into the server."""
     print(f"Loading bundle from {bundle_path}...")
     
@@ -20,7 +23,7 @@ def load_bundle(bundle_path: Path) -> None:
     
     # Post the transaction bundle
     response = httpx.post(
-        FHIR_BASE_URL,
+        fhir_base_url,
         json=bundle,
         headers={"Content-Type": "application/fhir+json"},
         timeout=60.0
@@ -47,10 +50,10 @@ def load_bundle(bundle_path: Path) -> None:
         sys.exit(1)
 
 
-def verify_server() -> bool:
+def verify_server(fhir_base_url: str) -> bool:
     """Check if HAPI FHIR server is running."""
     try:
-        response = httpx.get(f"{FHIR_BASE_URL}/metadata", timeout=10.0)
+        response = httpx.get(f"{fhir_base_url}/metadata", timeout=10.0)
         return response.status_code == 200
     except Exception:
         return False
@@ -58,12 +61,14 @@ def verify_server() -> bool:
 
 def main():
     """Main entry point."""
+    fhir_base_url = get_fhir_base_url()
+    
     print("Hospital FHIR MCP - Mock Data Loader")
     print("=" * 40)
     
     # Check server is running
-    print(f"\nChecking FHIR server at {FHIR_BASE_URL}...")
-    if not verify_server():
+    print(f"\nChecking FHIR server at {fhir_base_url}...")
+    if not verify_server(fhir_base_url):
         print("✗ FHIR server is not running!")
         print("\nStart it with: docker-compose up -d")
         sys.exit(1)
@@ -75,14 +80,14 @@ def main():
         print(f"✗ Bundle file not found: {bundle_path}")
         sys.exit(1)
     
-    load_bundle(bundle_path)
+    load_bundle(bundle_path, fhir_base_url)
     
     print("\n" + "=" * 40)
     print("Mock data loaded successfully!")
     print("\nTest queries:")
-    print(f"  curl {FHIR_BASE_URL}/Patient")
-    print(f"  curl {FHIR_BASE_URL}/Practitioner")
-    print(f"  curl '{FHIR_BASE_URL}/Slot?status=free'")
+    print(f"  curl {fhir_base_url}/Patient")
+    print(f"  curl {fhir_base_url}/Practitioner")
+    print(f"  curl '{fhir_base_url}/Slot?status=free'")
 
 
 if __name__ == "__main__":

@@ -222,7 +222,7 @@ def create_app() -> web.Application:
 
 def main():
     """Run the HTTP server."""
-    port = int(os.getenv("MCP_HTTP_PORT", "3000"))
+    port = int(os.getenv("PORT", os.getenv("MCP_HTTP_PORT", "3000")))
     
     print("=" * 60)
     print("  Hospital FHIR MCP Server (HTTP Mode)")

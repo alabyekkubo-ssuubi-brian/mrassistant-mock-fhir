@@ -1,7 +1,23 @@
-.PHONY: help install dev-up dev-down fhir-up fhir-down fhir-logs load-data run http-server server-http ngrok-up test test-tools test-mcp test-http test-curl inspect clean
+.PHONY: help install dev-up dev-down fhir-up fhir-down fhir-logs load-data cloudrun-load-data run http-server server-http ngrok-up docker-build docker-push cloudrun-deploy cloudrun-deploy-fhir test test-tools test-mcp test-http test-curl inspect clean
 
 # Prefer Compose V2 (`docker compose`); fall back to standalone `docker-compose`
 DOCKER_COMPOSE := $(shell if docker compose version >/dev/null 2>&1; then echo "docker compose"; elif command -v docker-compose >/dev/null 2>&1; then echo docker-compose; else echo ""; fi)
+
+# Cloud Run defaults (override as needed)
+IMAGE ?= gcr.io/<PROJECT_ID>/mrassistant-mcp-server:latest
+SERVICE ?= mrassistant-backend
+HAPI_IMAGE ?= hapiproject/hapi:latest
+FHIR_SERVICE ?= mrassistant-fhir
+REGION ?= us-central1
+PROJECT_ID ?= your-gcp-project
+PORT ?= 8000
+MEMORY ?= 2Gi
+CPU ?= 2
+TIMEOUT ?= 3600
+CONCURRENCY ?= 10
+MIN_INSTANCES ?= 1
+MAX_INSTANCES ?= 10
+ENV_FILE ?= env.yaml
 
 # Default target
 help:
@@ -15,6 +31,9 @@ help:
 	@echo "HTTP Mode (for public deployment):"
 	@echo "  make http-server   Run MCP server with HTTP transport"
 	@echo "  make server-http   Same as http-server (matches repo root)"
+	@echo "  make docker-build Build the Cloud Run container image"
+	@echo "  make docker-push  Push the Cloud Run container image"
+	@echo "  make cloudrun-deploy  Deploy the service to Google Cloud Run"
 	@echo "  make ngrok-up    Start ngrok tunnel (auto-detects domain)"
 	@echo ""
 	@echo "Testing:"
@@ -29,7 +48,8 @@ help:
 	@echo "  make fhir-up     Start HAPI FHIR server"
 	@echo "  make fhir-down   Stop HAPI FHIR server"
 	@echo "  make fhir-logs   Tail HAPI FHIR logs"
-	@echo "  make load-data   Load mock FHIR data"
+	@echo "  make load-data   Load mock FHIR data (local)"
+	@echo "  make cloudrun-load-data  Load mock data to remote FHIR (Cloud Run)"
 	@echo "  make test        Run all tests"
 	@echo "  make clean       Remove virtual env and docker volumes"
 	@echo ""
@@ -83,6 +103,11 @@ wait-for-fhir:
 load-data:
 	uv run python scripts/load_mock_data.py
 
+# Load mock data into remote FHIR service (Cloud Run or other)
+# Usage: make cloudrun-load-data FHIR_URL=https://your-fhir-service/fhir
+cloudrun-load-data:
+	uv run python scripts/load_remote_data.py "$(FHIR_URL)"
+
 # Run MCP server (stdio mode - for local testing)
 run:
 	uv run mcp-server
@@ -90,6 +115,44 @@ run:
 # Run MCP server with HTTP transport (for public deployment)
 http-server:
 	uv run python -m mcp_server.http_server
+
+# Docker build / Cloud Run helpers
+docker-build:
+	docker build -t "$(IMAGE)" .
+
+docker-push: docker-build
+	docker push "$(IMAGE)"
+
+cloudrun-deploy:
+	gcloud run deploy "$(SERVICE)" \
+		--image="$(IMAGE)" \
+		--region="$(REGION)" \
+		--project="$(PROJECT_ID)" \
+		--platform=managed \
+		--allow-unauthenticated \
+		--port="$(PORT)" \
+		--memory="$(MEMORY)" \
+		--cpu="$(CPU)" \
+		--timeout="$(TIMEOUT)" \
+		--concurrency="$(CONCURRENCY)" \
+		--min-instances="$(MIN_INSTANCES)" \
+		--max-instances="$(MAX_INSTANCES)" \
+		--env-vars-file="$(ENV_FILE)"
+
+cloudrun-deploy-fhir:
+	gcloud run deploy "$(FHIR_SERVICE)" \
+		--image="$(HAPI_IMAGE)" \
+		--region="$(REGION)" \
+		--project="$(PROJECT_ID)" \
+		--platform=managed \
+		--allow-unauthenticated \
+		--port=8080 \
+		--memory=2Gi \
+		--cpu=1 \
+		--timeout=3600 \
+		--concurrency="$(CONCURRENCY)" \
+		--min-instances=0 \
+		--max-instances=5
 
 # Alias for root Makefile / docs that say `make server-http`
 server-http: http-server
