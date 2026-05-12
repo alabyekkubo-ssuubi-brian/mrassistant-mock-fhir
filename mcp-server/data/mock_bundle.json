@@ -198,6 +198,86 @@
       }
     },
     {
+      "fullUrl": "urn:uuid:practitioner-004",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "practitioner-004",
+        "name": [
+          {
+            "use": "official",
+            "prefix": ["Dr."],
+            "family": "Kumar",
+            "given": ["Raj", "Singh"]
+          }
+        ],
+        "gender": "male"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Practitioner/practitioner-004"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:practitioner-005",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "practitioner-005",
+        "name": [
+          {
+            "use": "official",
+            "prefix": ["Dr."],
+            "family": "Wong",
+            "given": ["Shu", "Fen"]
+          }
+        ],
+        "gender": "female"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Practitioner/practitioner-005"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:practitioner-006",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "practitioner-006",
+        "name": [
+          {
+            "use": "official",
+            "prefix": ["Dr."],
+            "family": "Zhang",
+            "given": ["Li", "Hua"]
+          }
+        ],
+        "gender": "female"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Practitioner/practitioner-006"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:practitioner-007",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "practitioner-007",
+        "name": [
+          {
+            "use": "official",
+            "prefix": ["Dr."],
+            "family": "Ibrahim",
+            "given": ["Ahmad", "Faiz"]
+          }
+        ],
+        "gender": "male"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Practitioner/practitioner-007"
+      }
+    },
+    {
       "fullUrl": "urn:uuid:practitioner-role-001",
       "resource": {
         "resourceType": "PractitionerRole",
@@ -276,6 +356,110 @@
       }
     },
     {
+      "fullUrl": "urn:uuid:practitioner-role-004",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "practitioner-role-004",
+        "practitioner": {
+          "reference": "Practitioner/practitioner-004",
+          "display": "Dr. Kumar Raj Singh"
+        },
+        "specialty": [
+          {
+            "coding": [
+              {
+                "system": "http://hospital.example.com/specialty",
+                "code": "orthopedics",
+                "display": "Orthopedics"
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "PractitionerRole/practitioner-role-004"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:practitioner-role-005",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "practitioner-role-005",
+        "practitioner": {
+          "reference": "Practitioner/practitioner-005",
+          "display": "Dr. Wong Shu Fen"
+        },
+        "specialty": [
+          {
+            "coding": [
+              {
+                "system": "http://hospital.example.com/specialty",
+                "code": "pediatrics",
+                "display": "Pediatrics"
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "PractitionerRole/practitioner-role-005"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:practitioner-role-006",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "practitioner-role-006",
+        "practitioner": {
+          "reference": "Practitioner/practitioner-006",
+          "display": "Dr. Zhang Li Hua"
+        },
+        "specialty": [
+          {
+            "coding": [
+              {
+                "system": "http://hospital.example.com/specialty",
+                "code": "neurology",
+                "display": "Neurology"
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "PractitionerRole/practitioner-role-006"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:practitioner-role-007",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "practitioner-role-007",
+        "practitioner": {
+          "reference": "Practitioner/practitioner-007",
+          "display": "Dr. Ibrahim Ahmad Faiz"
+        },
+        "specialty": [
+          {
+            "coding": [
+              {
+                "system": "http://hospital.example.com/specialty",
+                "code": "ophthalmology",
+                "display": "Ophthalmology"
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "PractitionerRole/practitioner-role-007"
+      }
+    },
+    {
       "fullUrl": "urn:uuid:schedule-001",
       "resource": {
         "resourceType": "Schedule",
@@ -336,6 +520,90 @@
       "request": {
         "method": "PUT",
         "url": "Schedule/schedule-003"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:schedule-004",
+      "resource": {
+        "resourceType": "Schedule",
+        "id": "schedule-004",
+        "actor": [
+          {
+            "reference": "Practitioner/practitioner-004",
+            "display": "Dr. Kumar Raj Singh"
+          }
+        ],
+        "planningHorizon": {
+          "start": "2026-05-01T00:00:00+08:00",
+          "end": "2026-05-31T23:59:59+08:00"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Schedule/schedule-004"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:schedule-005",
+      "resource": {
+        "resourceType": "Schedule",
+        "id": "schedule-005",
+        "actor": [
+          {
+            "reference": "Practitioner/practitioner-005",
+            "display": "Dr. Wong Shu Fen"
+          }
+        ],
+        "planningHorizon": {
+          "start": "2026-05-01T00:00:00+08:00",
+          "end": "2026-05-31T23:59:59+08:00"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Schedule/schedule-005"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:schedule-006",
+      "resource": {
+        "resourceType": "Schedule",
+        "id": "schedule-006",
+        "actor": [
+          {
+            "reference": "Practitioner/practitioner-006",
+            "display": "Dr. Zhang Li Hua"
+          }
+        ],
+        "planningHorizon": {
+          "start": "2026-05-01T00:00:00+08:00",
+          "end": "2026-05-31T23:59:59+08:00"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Schedule/schedule-006"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:schedule-007",
+      "resource": {
+        "resourceType": "Schedule",
+        "id": "schedule-007",
+        "actor": [
+          {
+            "reference": "Practitioner/practitioner-007",
+            "display": "Dr. Ibrahim Ahmad Faiz"
+          }
+        ],
+        "planningHorizon": {
+          "start": "2026-05-01T00:00:00+08:00",
+          "end": "2026-05-31T23:59:59+08:00"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Schedule/schedule-007"
       }
     },
     {
@@ -557,6 +825,1468 @@
       "request": {
         "method": "PUT",
         "url": "Slot/slot-013"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-014",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-014",
+        "schedule": {
+          "reference": "Schedule/schedule-004"
+        },
+        "status": "free",
+        "start": "2026-05-05T08:30:00+08:00",
+        "end": "2026-05-05T08:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-014"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-015",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-015",
+        "schedule": {
+          "reference": "Schedule/schedule-004"
+        },
+        "status": "free",
+        "start": "2026-05-05T08:45:00+08:00",
+        "end": "2026-05-05T09:00:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-015"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-016",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-016",
+        "schedule": {
+          "reference": "Schedule/schedule-004"
+        },
+        "status": "free",
+        "start": "2026-05-05T10:00:00+08:00",
+        "end": "2026-05-05T10:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-016"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-017",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-017",
+        "schedule": {
+          "reference": "Schedule/schedule-004"
+        },
+        "status": "free",
+        "start": "2026-05-05T10:15:00+08:00",
+        "end": "2026-05-05T10:30:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-017"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-018",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-018",
+        "schedule": {
+          "reference": "Schedule/schedule-004"
+        },
+        "status": "free",
+        "start": "2026-05-05T14:30:00+08:00",
+        "end": "2026-05-05T14:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-018"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-019",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-019",
+        "schedule": {
+          "reference": "Schedule/schedule-004"
+        },
+        "status": "free",
+        "start": "2026-05-06T08:30:00+08:00",
+        "end": "2026-05-06T08:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-019"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-020",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-020",
+        "schedule": {
+          "reference": "Schedule/schedule-004"
+        },
+        "status": "free",
+        "start": "2026-05-06T10:30:00+08:00",
+        "end": "2026-05-06T10:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-020"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-021",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-021",
+        "schedule": {
+          "reference": "Schedule/schedule-005"
+        },
+        "status": "free",
+        "start": "2026-05-05T08:00:00+08:00",
+        "end": "2026-05-05T08:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-021"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-022",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-022",
+        "schedule": {
+          "reference": "Schedule/schedule-005"
+        },
+        "status": "free",
+        "start": "2026-05-05T08:15:00+08:00",
+        "end": "2026-05-05T08:30:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-022"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-023",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-023",
+        "schedule": {
+          "reference": "Schedule/schedule-005"
+        },
+        "status": "free",
+        "start": "2026-05-05T09:30:00+08:00",
+        "end": "2026-05-05T09:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-023"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-024",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-024",
+        "schedule": {
+          "reference": "Schedule/schedule-005"
+        },
+        "status": "free",
+        "start": "2026-05-05T09:45:00+08:00",
+        "end": "2026-05-05T10:00:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-024"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-025",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-025",
+        "schedule": {
+          "reference": "Schedule/schedule-005"
+        },
+        "status": "free",
+        "start": "2026-05-05T15:30:00+08:00",
+        "end": "2026-05-05T15:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-025"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-026",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-026",
+        "schedule": {
+          "reference": "Schedule/schedule-005"
+        },
+        "status": "free",
+        "start": "2026-05-06T08:00:00+08:00",
+        "end": "2026-05-06T08:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-026"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-027",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-027",
+        "schedule": {
+          "reference": "Schedule/schedule-005"
+        },
+        "status": "free",
+        "start": "2026-05-06T09:30:00+08:00",
+        "end": "2026-05-06T09:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-027"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-028",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-028",
+        "schedule": {
+          "reference": "Schedule/schedule-006"
+        },
+        "status": "free",
+        "start": "2026-05-05T09:00:00+08:00",
+        "end": "2026-05-05T09:20:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-028"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-029",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-029",
+        "schedule": {
+          "reference": "Schedule/schedule-006"
+        },
+        "status": "free",
+        "start": "2026-05-05T09:20:00+08:00",
+        "end": "2026-05-05T09:40:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-029"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-030",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-030",
+        "schedule": {
+          "reference": "Schedule/schedule-006"
+        },
+        "status": "free",
+        "start": "2026-05-05T11:00:00+08:00",
+        "end": "2026-05-05T11:20:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-030"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-031",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-031",
+        "schedule": {
+          "reference": "Schedule/schedule-006"
+        },
+        "status": "free",
+        "start": "2026-05-05T14:00:00+08:00",
+        "end": "2026-05-05T14:20:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-031"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-032",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-032",
+        "schedule": {
+          "reference": "Schedule/schedule-006"
+        },
+        "status": "free",
+        "start": "2026-05-05T14:20:00+08:00",
+        "end": "2026-05-05T14:40:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-032"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-033",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-033",
+        "schedule": {
+          "reference": "Schedule/schedule-006"
+        },
+        "status": "free",
+        "start": "2026-05-06T09:00:00+08:00",
+        "end": "2026-05-06T09:20:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-033"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-034",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-034",
+        "schedule": {
+          "reference": "Schedule/schedule-006"
+        },
+        "status": "free",
+        "start": "2026-05-06T11:00:00+08:00",
+        "end": "2026-05-06T11:20:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-034"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-035",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-035",
+        "schedule": {
+          "reference": "Schedule/schedule-007"
+        },
+        "status": "free",
+        "start": "2026-05-05T10:00:00+08:00",
+        "end": "2026-05-05T10:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-035"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-036",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-036",
+        "schedule": {
+          "reference": "Schedule/schedule-007"
+        },
+        "status": "free",
+        "start": "2026-05-05T10:15:00+08:00",
+        "end": "2026-05-05T10:30:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-036"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-037",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-037",
+        "schedule": {
+          "reference": "Schedule/schedule-007"
+        },
+        "status": "free",
+        "start": "2026-05-05T11:30:00+08:00",
+        "end": "2026-05-05T11:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-037"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-038",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-038",
+        "schedule": {
+          "reference": "Schedule/schedule-007"
+        },
+        "status": "free",
+        "start": "2026-05-05T15:00:00+08:00",
+        "end": "2026-05-05T15:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-038"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-039",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-039",
+        "schedule": {
+          "reference": "Schedule/schedule-007"
+        },
+        "status": "free",
+        "start": "2026-05-05T15:15:00+08:00",
+        "end": "2026-05-05T15:30:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-039"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-040",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-040",
+        "schedule": {
+          "reference": "Schedule/schedule-007"
+        },
+        "status": "free",
+        "start": "2026-05-06T10:00:00+08:00",
+        "end": "2026-05-06T10:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-040"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-041",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-041",
+        "schedule": {
+          "reference": "Schedule/schedule-007"
+        },
+        "status": "free",
+        "start": "2026-05-06T11:30:00+08:00",
+        "end": "2026-05-06T11:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-041"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-042",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-042",
+        "schedule": {
+          "reference": "Schedule/schedule-001"
+        },
+        "status": "free",
+        "start": "2026-05-12T09:00:00+08:00",
+        "end": "2026-05-12T09:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-042"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-043",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-043",
+        "schedule": {
+          "reference": "Schedule/schedule-001"
+        },
+        "status": "free",
+        "start": "2026-05-12T09:15:00+08:00",
+        "end": "2026-05-12T09:30:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-043"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-044",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-044",
+        "schedule": {
+          "reference": "Schedule/schedule-001"
+        },
+        "status": "free",
+        "start": "2026-05-12T10:30:00+08:00",
+        "end": "2026-05-12T10:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-044"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-045",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-045",
+        "schedule": {
+          "reference": "Schedule/schedule-001"
+        },
+        "status": "free",
+        "start": "2026-05-12T14:00:00+08:00",
+        "end": "2026-05-12T14:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-045"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-046",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-046",
+        "schedule": {
+          "reference": "Schedule/schedule-001"
+        },
+        "status": "free",
+        "start": "2026-05-12T15:00:00+08:00",
+        "end": "2026-05-12T15:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-046"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-047",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-047",
+        "schedule": {
+          "reference": "Schedule/schedule-002"
+        },
+        "status": "free",
+        "start": "2026-05-12T08:30:00+08:00",
+        "end": "2026-05-12T08:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-047"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-048",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-048",
+        "schedule": {
+          "reference": "Schedule/schedule-002"
+        },
+        "status": "free",
+        "start": "2026-05-12T10:00:00+08:00",
+        "end": "2026-05-12T10:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-048"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-049",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-049",
+        "schedule": {
+          "reference": "Schedule/schedule-002"
+        },
+        "status": "free",
+        "start": "2026-05-12T11:00:00+08:00",
+        "end": "2026-05-12T11:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-049"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-050",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-050",
+        "schedule": {
+          "reference": "Schedule/schedule-002"
+        },
+        "status": "free",
+        "start": "2026-05-12T15:30:00+08:00",
+        "end": "2026-05-12T15:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-050"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-051",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-051",
+        "schedule": {
+          "reference": "Schedule/schedule-003"
+        },
+        "status": "free",
+        "start": "2026-05-12T09:00:00+08:00",
+        "end": "2026-05-12T09:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-051"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-052",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-052",
+        "schedule": {
+          "reference": "Schedule/schedule-003"
+        },
+        "status": "free",
+        "start": "2026-05-12T10:00:00+08:00",
+        "end": "2026-05-12T10:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-052"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-053",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-053",
+        "schedule": {
+          "reference": "Schedule/schedule-003"
+        },
+        "status": "free",
+        "start": "2026-05-12T14:30:00+08:00",
+        "end": "2026-05-12T14:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-053"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-054",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-054",
+        "schedule": {
+          "reference": "Schedule/schedule-003"
+        },
+        "status": "free",
+        "start": "2026-05-12T15:30:00+08:00",
+        "end": "2026-05-12T15:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-054"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-055",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-055",
+        "schedule": {
+          "reference": "Schedule/schedule-004"
+        },
+        "status": "free",
+        "start": "2026-05-12T08:00:00+08:00",
+        "end": "2026-05-12T08:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-055"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-056",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-056",
+        "schedule": {
+          "reference": "Schedule/schedule-004"
+        },
+        "status": "free",
+        "start": "2026-05-12T09:00:00+08:00",
+        "end": "2026-05-12T09:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-056"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-057",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-057",
+        "schedule": {
+          "reference": "Schedule/schedule-004"
+        },
+        "status": "free",
+        "start": "2026-05-12T10:30:00+08:00",
+        "end": "2026-05-12T10:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-057"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-058",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-058",
+        "schedule": {
+          "reference": "Schedule/schedule-004"
+        },
+        "status": "free",
+        "start": "2026-05-12T14:00:00+08:00",
+        "end": "2026-05-12T14:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-058"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-059",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-059",
+        "schedule": {
+          "reference": "Schedule/schedule-005"
+        },
+        "status": "free",
+        "start": "2026-05-12T08:30:00+08:00",
+        "end": "2026-05-12T08:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-059"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-060",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-060",
+        "schedule": {
+          "reference": "Schedule/schedule-005"
+        },
+        "status": "free",
+        "start": "2026-05-12T09:30:00+08:00",
+        "end": "2026-05-12T09:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-060"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-061",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-061",
+        "schedule": {
+          "reference": "Schedule/schedule-005"
+        },
+        "status": "free",
+        "start": "2026-05-12T10:30:00+08:00",
+        "end": "2026-05-12T10:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-061"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-062",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-062",
+        "schedule": {
+          "reference": "Schedule/schedule-005"
+        },
+        "status": "free",
+        "start": "2026-05-12T15:00:00+08:00",
+        "end": "2026-05-12T15:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-062"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-063",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-063",
+        "schedule": {
+          "reference": "Schedule/schedule-006"
+        },
+        "status": "free",
+        "start": "2026-05-12T09:00:00+08:00",
+        "end": "2026-05-12T09:20:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-063"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-064",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-064",
+        "schedule": {
+          "reference": "Schedule/schedule-006"
+        },
+        "status": "free",
+        "start": "2026-05-12T10:00:00+08:00",
+        "end": "2026-05-12T10:20:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-064"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-065",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-065",
+        "schedule": {
+          "reference": "Schedule/schedule-006"
+        },
+        "status": "free",
+        "start": "2026-05-12T11:30:00+08:00",
+        "end": "2026-05-12T11:50:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-065"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-066",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-066",
+        "schedule": {
+          "reference": "Schedule/schedule-006"
+        },
+        "status": "free",
+        "start": "2026-05-12T14:30:00+08:00",
+        "end": "2026-05-12T14:50:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-066"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-067",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-067",
+        "schedule": {
+          "reference": "Schedule/schedule-007"
+        },
+        "status": "free",
+        "start": "2026-05-12T09:30:00+08:00",
+        "end": "2026-05-12T09:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-067"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-068",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-068",
+        "schedule": {
+          "reference": "Schedule/schedule-007"
+        },
+        "status": "free",
+        "start": "2026-05-12T10:30:00+08:00",
+        "end": "2026-05-12T10:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-068"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-069",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-069",
+        "schedule": {
+          "reference": "Schedule/schedule-007"
+        },
+        "status": "free",
+        "start": "2026-05-12T14:00:00+08:00",
+        "end": "2026-05-12T14:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-069"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-070",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-070",
+        "schedule": {
+          "reference": "Schedule/schedule-007"
+        },
+        "status": "free",
+        "start": "2026-05-12T15:30:00+08:00",
+        "end": "2026-05-12T15:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-070"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-071",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-071",
+        "schedule": {
+          "reference": "Schedule/schedule-001"
+        },
+        "status": "free",
+        "start": "2026-05-13T09:00:00+08:00",
+        "end": "2026-05-13T09:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-071"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-072",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-072",
+        "schedule": {
+          "reference": "Schedule/schedule-001"
+        },
+        "status": "free",
+        "start": "2026-05-13T10:00:00+08:00",
+        "end": "2026-05-13T10:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-072"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-073",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-073",
+        "schedule": {
+          "reference": "Schedule/schedule-001"
+        },
+        "status": "free",
+        "start": "2026-05-13T11:30:00+08:00",
+        "end": "2026-05-13T11:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-073"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-074",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-074",
+        "schedule": {
+          "reference": "Schedule/schedule-001"
+        },
+        "status": "free",
+        "start": "2026-05-13T14:30:00+08:00",
+        "end": "2026-05-13T14:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-074"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-075",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-075",
+        "schedule": {
+          "reference": "Schedule/schedule-001"
+        },
+        "status": "free",
+        "start": "2026-05-13T15:30:00+08:00",
+        "end": "2026-05-13T15:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-075"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-076",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-076",
+        "schedule": {
+          "reference": "Schedule/schedule-002"
+        },
+        "status": "free",
+        "start": "2026-05-13T08:00:00+08:00",
+        "end": "2026-05-13T08:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-076"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-077",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-077",
+        "schedule": {
+          "reference": "Schedule/schedule-002"
+        },
+        "status": "free",
+        "start": "2026-05-13T09:30:00+08:00",
+        "end": "2026-05-13T09:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-077"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-078",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-078",
+        "schedule": {
+          "reference": "Schedule/schedule-002"
+        },
+        "status": "free",
+        "start": "2026-05-13T11:00:00+08:00",
+        "end": "2026-05-13T11:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-078"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-079",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-079",
+        "schedule": {
+          "reference": "Schedule/schedule-002"
+        },
+        "status": "free",
+        "start": "2026-05-13T14:00:00+08:00",
+        "end": "2026-05-13T14:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-079"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-080",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-080",
+        "schedule": {
+          "reference": "Schedule/schedule-003"
+        },
+        "status": "free",
+        "start": "2026-05-13T09:30:00+08:00",
+        "end": "2026-05-13T09:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-080"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-081",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-081",
+        "schedule": {
+          "reference": "Schedule/schedule-003"
+        },
+        "status": "free",
+        "start": "2026-05-13T10:30:00+08:00",
+        "end": "2026-05-13T10:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-081"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-082",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-082",
+        "schedule": {
+          "reference": "Schedule/schedule-003"
+        },
+        "status": "free",
+        "start": "2026-05-13T14:00:00+08:00",
+        "end": "2026-05-13T14:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-082"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-083",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-083",
+        "schedule": {
+          "reference": "Schedule/schedule-003"
+        },
+        "status": "free",
+        "start": "2026-05-13T15:00:00+08:00",
+        "end": "2026-05-13T15:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-083"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-084",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-084",
+        "schedule": {
+          "reference": "Schedule/schedule-004"
+        },
+        "status": "free",
+        "start": "2026-05-13T08:30:00+08:00",
+        "end": "2026-05-13T08:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-084"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-085",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-085",
+        "schedule": {
+          "reference": "Schedule/schedule-004"
+        },
+        "status": "free",
+        "start": "2026-05-13T09:30:00+08:00",
+        "end": "2026-05-13T09:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-085"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-086",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-086",
+        "schedule": {
+          "reference": "Schedule/schedule-004"
+        },
+        "status": "free",
+        "start": "2026-05-13T10:00:00+08:00",
+        "end": "2026-05-13T10:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-086"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-087",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-087",
+        "schedule": {
+          "reference": "Schedule/schedule-004"
+        },
+        "status": "free",
+        "start": "2026-05-13T15:00:00+08:00",
+        "end": "2026-05-13T15:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-087"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-088",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-088",
+        "schedule": {
+          "reference": "Schedule/schedule-005"
+        },
+        "status": "free",
+        "start": "2026-05-13T08:00:00+08:00",
+        "end": "2026-05-13T08:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-088"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-089",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-089",
+        "schedule": {
+          "reference": "Schedule/schedule-005"
+        },
+        "status": "free",
+        "start": "2026-05-13T09:00:00+08:00",
+        "end": "2026-05-13T09:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-089"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-090",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-090",
+        "schedule": {
+          "reference": "Schedule/schedule-005"
+        },
+        "status": "free",
+        "start": "2026-05-13T10:00:00+08:00",
+        "end": "2026-05-13T10:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-090"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-091",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-091",
+        "schedule": {
+          "reference": "Schedule/schedule-005"
+        },
+        "status": "free",
+        "start": "2026-05-13T14:30:00+08:00",
+        "end": "2026-05-13T14:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-091"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-092",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-092",
+        "schedule": {
+          "reference": "Schedule/schedule-006"
+        },
+        "status": "free",
+        "start": "2026-05-13T09:30:00+08:00",
+        "end": "2026-05-13T09:50:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-092"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-093",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-093",
+        "schedule": {
+          "reference": "Schedule/schedule-006"
+        },
+        "status": "free",
+        "start": "2026-05-13T10:30:00+08:00",
+        "end": "2026-05-13T10:50:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-093"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-094",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-094",
+        "schedule": {
+          "reference": "Schedule/schedule-006"
+        },
+        "status": "free",
+        "start": "2026-05-13T11:30:00+08:00",
+        "end": "2026-05-13T11:50:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-094"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-095",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-095",
+        "schedule": {
+          "reference": "Schedule/schedule-006"
+        },
+        "status": "free",
+        "start": "2026-05-13T15:00:00+08:00",
+        "end": "2026-05-13T15:20:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-095"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-096",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-096",
+        "schedule": {
+          "reference": "Schedule/schedule-007"
+        },
+        "status": "free",
+        "start": "2026-05-13T09:00:00+08:00",
+        "end": "2026-05-13T09:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-096"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-097",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-097",
+        "schedule": {
+          "reference": "Schedule/schedule-007"
+        },
+        "status": "free",
+        "start": "2026-05-13T10:00:00+08:00",
+        "end": "2026-05-13T10:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-097"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-098",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-098",
+        "schedule": {
+          "reference": "Schedule/schedule-007"
+        },
+        "status": "free",
+        "start": "2026-05-13T11:00:00+08:00",
+        "end": "2026-05-13T11:15:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-098"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:slot-099",
+      "resource": {
+        "resourceType": "Slot",
+        "id": "slot-099",
+        "schedule": {
+          "reference": "Schedule/schedule-007"
+        },
+        "status": "free",
+        "start": "2026-05-13T14:30:00+08:00",
+        "end": "2026-05-13T14:45:00+08:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Slot/slot-099"
       }
     }
   ]
